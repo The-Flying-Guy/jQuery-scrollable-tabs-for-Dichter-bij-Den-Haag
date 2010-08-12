@@ -69,6 +69,31 @@
 				}
 			}
 			
+			var navEnabler = function (tab) {
+				tab = $(tab)
+				setTimeout(function(){
+					//Check if last or first tab is selected than disable the navigation arrows
+					var isLast = tab.is(':last-child'),
+						isFirst = tab.is(':first-child'),
+						$ntNav = $tabsWrapper.find('.stNext'),
+						$pvNav = $tabsWrapper.find('.stPrev');
+					if(isLast)
+					{
+						$pvNav.removeClass('ui-state-disabled');
+						$ntNav.addClass('ui-state-disabled');
+					}
+					else if(isFirst)
+					{
+						$ntNav.removeClass('ui-state-disabled');
+						$pvNav.addClass('ui-state-disabled');
+					}
+					else
+					{
+						$ntNav.removeClass('ui-state-disabled');
+						$pvNav.removeClass('ui-state-disabled');
+					}
+				},o.animationSpeed);
+			}
 
 			//Add navigation icons
 				//Total height of nav/2 - total height of arrow/2
@@ -88,7 +113,14 @@
 							.append($('<span/>').disableSelection().addClass('ui-icon ui-icon-carat-1-w').html('Previous tab').css('margin-top',arrowsTopMargin))
 							.click(function(){
 								// Find the next tab outside the viewable area and scroll to it
-
+								var navWidth = $nav.find('.stPrev').outerWidth(true)
+								var firstPartialTabLeft = $.grep($tabsNav.find('li'), function (e) {
+									return (($(e).position().left-navWidth)<0)
+								}).reverse()[0]
+								if (firstPartialTabLeft) {
+									$tabs.trigger("scrollToTab",[$(firstPartialTabLeft),'tabClicked','left'])
+									navEnabler(firstPartialTabLeft)
+								}
 							}),
 						$('<span/>')
 							.disableSelection()
@@ -99,6 +131,14 @@
 							.append($('<span/>').addClass('ui-icon ui-icon-carat-1-e').html('Next tab').css('margin-top',arrowsTopMargin))
 							.click(function(){
 								// Find the next tab outside the viewable area and scroll to it
+								var navWidth = $nav.find('.stPrev').outerWidth(true)
+								var firstPartialTabRight = $.grep($tabsNav.find('li'), function (e) {
+									return (($(e).outerWidth()+$(e).position().left)>($tabs.width()-navWidth))
+								})[0]
+								if (firstPartialTabRight) {
+									$tabs.trigger("scrollToTab",[$(firstPartialTabRight),'tabClicked','right'])
+									navEnabler(firstPartialTabRight)
+								}
 								
 								return false;
 							})
@@ -201,29 +241,8 @@
 				$tabsNav.scrollTo($tabToScrollTo,o.animationSpeed,scrollSettings);
 			})
 			.bind('navEnabler',function(){
-				setTimeout(function(){
-					//Check if last or first tab is selected than disable the navigation arrows
-					var isLast = $tabsNav.find('.ui-tabs-selected').is(':last-child'),
-						isFirst = $tabsNav.find('.ui-tabs-selected').is(':first-child'),
-						$ntNav = $tabsWrapper.find('.stNext'),
-						$pvNav = $tabsWrapper.find('.stPrev');
-					//debug('isLast = '+isLast+' - isFirst = '+isFirst);
-/*					if(isLast)
-					{
-						$pvNav.removeClass('ui-state-disabled');
-						$ntNav.addClass('ui-state-disabled');
-					}
-					else if(isFirst)
-					{
-						$ntNav.removeClass('ui-state-disabled');
-						$pvNav.addClass('ui-state-disabled');
-					}
-					else*/
-					{
-						$ntNav.removeClass('ui-state-disabled');
-						$pvNav.removeClass('ui-state-disabled');
-					}
-				},o.animationSpeed);
+				//Check if last or first tab is selected than disable the navigation arrows
+				navEnabler($tabsNav.find('.ui-tabs-selected'))
 			})
 			//Now check if tabs need navigation (many tabs out of sight)
 			.bind('navHandler',function(){
