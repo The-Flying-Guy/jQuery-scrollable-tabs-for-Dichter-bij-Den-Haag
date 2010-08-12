@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="title" content="jQuery ui-Scrollable tabs plugin v1.0 by Aamir Afridi" />
+		<meta name="keywords" content="jquery, tabs, scrollable, scroll, aamir, afridi, aamir afridi, js, javascript, script, plugin, jquery plugin, jq, tab">
+
+		<title>jQuery UI Scrollable Tabs v1.0</title>
+		<link type="text/css" href="css/ui-lightness/jquery-ui-1.7.2.custom.css" rel="stylesheet" />
+		<link type="text/css" href="css/sh/sh_style.css" rel="stylesheet" />
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="js/jquery.scrollabletab.js"></script>
+		<script type="text/javascript" src="http://jqueryui.com/themeroller/themeswitchertool/"></script>
+		<script type="text/javascript" src="js/sh/sh.js"></script>
+		<script type="text/javascript" src="js/sh/sh_javascript.min.js"></script>
+		<script type="text/javascript" src="js/sh/sh_html.min.js"></script>
+		<script type="text/javascript" src="js/jquery.init.js"></script>
+		<style type="text/css">
+			body{ font-size: 11px;font-family:"Helvetica Neue",HelveticaNeue,Helvetica,sans-serif; margin: 50px 70px;}
+			p { font-size:13px}
+			h2 {font-size:16px;}
+			.tabs {width:600px;}
+			#switcher { position:fixed;right:70px;top:20px}
+			pre { padding:10px; border:1px solid #CCC;background:none !important}
+			.myCode {font-family:monospace; border:none}
+		</style>
+	</head>
+	<body>
+	<div id="switcher"></div>
+	<h1 style="margin-bottom:15px; padding-bottom:5px; border-width:0 0 1px 0;padding:5px" class="ui-state-active">
+		jQuery-ui Scrollable tabs plugin v1.0
+		<a style="font-size:12px;padding-left:15px" href="js/jquery.scrollabletab.js" title="jquery.scrollabletab.js">Download source file &darr;</a>
+		<span style="font-size:12px;padding-left:15px"> | </span>
+		<a style="font-size:12px;padding-left:15px" href="http://plugins.jquery.com/project/scrollabletabs" target='js'>jQuery project home</a>
+		<span style="font-size:12px;padding-left:15px"> | &nbsp;&nbsp;&nbsp;Contact: </span><a style="font-size:12px;text-decoration:underline" href="mailto:aamirafridi@gmail.com">aamirafridi(at)gmail(dot)com</a>
+		
+	</h1>
+
+	<h2 style="margin-top:25px" id='examples'>Examples 1: Start plugin without any options</h2>
+
+<pre class="sh_javascript ui-corner-all">
+var $tabs= $('#tabs').tabs().scrollabletab();
+//Add new tab
+$('#addTab').click(function(){
+	var label = 'New tab',
+	    content = 'This is the content for the '+label+'Lorem ipsum dolor sit amet, ...'; //Content can be a jQuery object
+	//Event to add new tab
+	$tabs.trigger('addTab',[label,content]);
+	return false;
+});
+</pre>
+
+	<div>
+		<div style="margin:20px 0;float:left">
+			<a class="ui-state-default ui-corner-all" id="addTab_1" href="#" style="padding:6px 6px 6px 17px;text-decoration:none;position:relative">
+				<span class="ui-icon ui-icon-plus" style="position:absolute;top:4px;left:1px"></span>
+				Add new tab using <span class="myCode ui-state-active">$tabs.trigger('addTab', [label,content])</span>
+			</a>
+		</div>
+		<div style="margin:20px 0 20px 8px;float:left;">
+			<a class="ui-state-default ui-corner-all" id="addUiTab" href="#" style="padding:6px 6px 6px 17px;text-decoration:none;position:relative">
+				<span class="ui-icon ui-icon-plus" style="position:absolute;top:4px;left:1px"></span>
+				Add new tab using <span class="myCode ui-state-active">$tabs.tabs('add','#'+tabid,label)</span>
+			</a>
+		</div>
+		<div style="clear:both;margin:20px 0;">
+			<a class="ui-state-default ui-corner-all" id="removeTab" href="#" style="padding:6px 6px 6px 17px;text-decoration:none;position:relative">
+				<span class="ui-icon ui-icon-plus" style="position:absolute;top:4px;left:1px"></span>
+				Remove last tab using <span class="myCode ui-state-active">$tabs.tabs('remove',$tabs.tabs('length')-1)</span>
+			</a>
+		</div>
+		<div style="clear:both"></div>
+	</div>
+	
+	<div id="example_1" class="tabs">
+		<ul>
+			<li><a href="#tabs-1-2">Tab 1</a></li>
+			<li><a href="#tabs-2-2">This is tab 2</a></li>
+			<li><a href="#tabs-3-2">This is tab number 3</a></li>
+			<li><a href="#tabs-4-2">Tab no 4</a></li>
+			<li><a href="#tabs-5-2">And tab number 5</a></li>
+			<li><a href="#tabs-6-2">Tab number 6</a></li>
+			<li><a href="#tabs-7-2">And last tab number 7</a></li>
+		</ul>
+		<div id="tabs-1-2">Tab 1<br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque hendrerit vulputate porttitor. Fusce purus leo, faucibus a sagittis congue, molestie tempus felis. Donec convallis semper enim, varius sagittis eros imperdiet in. Vivamus semper sem at metus mattis a aliquam neque ornare. Proin sed semper lacus.</div>
+		<div id="tabs-2-2">This is tab 2<br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque hendrerit vulputate porttitor. Fusce purus leo, faucibus a sagittis congue, molestie tempus felis. Donec convallis semper enim, varius sagittis eros imperdiet in. Vivamus semper sem at metus mattis a aliquam neque ornare. Proin sed semper lacus.</div>
+		<div id="tabs-3-2">This is tab number 3<br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque hendrerit vulputate porttitor. Fusce purus leo, faucibus a sagittis congue, molestie tempus felis. Donec convallis semper enim, varius sagittis eros imperdiet in. Vivamus semper sem at metus mattis a aliquam neque ornare. Proin sed semper lacus.</div>
+		<div id="tabs-4-2">Tab no 4<br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque hendrerit vulputate porttitor. Fusce purus leo, faucibus a sagittis congue, molestie tempus felis. Donec convallis semper enim, varius sagittis eros imperdiet in. Vivamus semper sem at metus mattis a aliquam neque ornare. Proin sed semper lacus.</div>
+		<div id="tabs-5-2">And this is the tab number 5<br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque hendrerit vulputate porttitor. Fusce purus leo, faucibus a sagittis congue, molestie tempus felis. Donec convallis semper enim, varius sagittis eros imperdiet in. Vivamus semper sem at metus mattis a aliquam neque ornare. Proin sed semper lacus.</div>
+		<div id="tabs-6-2">Tab number 6<br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque hendrerit vulputate porttitor. Fusce purus leo, faucibus a sagittis congue, molestie tempus felis. Donec convallis semper enim, varius sagittis eros imperdiet in. Vivamus semper sem at metus mattis a aliquam neque ornare. Proin sed semper lacus.</div>
+		<div id="tabs-7-2">And last tab number 7<br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque hendrerit vulputate porttitor. Fusce purus leo, faucibus a sagittis congue, molestie tempus felis. Donec convallis semper enim, varius sagittis eros imperdiet in. Vivamus semper sem at metus mattis a aliquam neque ornare. Proin sed semper lacus.</div>
+	</div>
+	
+	
+	
+	<h2 style="margin-top:25px" id='examples'>Examples 2: Start plugin with options</h2>
+
+<pre class="sh_javascript ui-corner-all">
+var $tabs= $('#tabs')
+	.tabs()
+	.scrollabletab({
+		'closable':true, //Default false
+		'animationSpeed':50, //Default 100
+		'loadLastTab':true, //Default false
+		'resizable':true, //Default false
+		'resizeHandles':'e,s,se', //Default 'e,s,se'
+		'easing':'easeInOutExpo' //Default 'swing'
+	});
+//Add new tab
+$('#addTab').click(function(){
+	var label = 'New tab',
+	    content = 'This is the content for the '+label+'Lorem ipsum dolor sit amet, ...'; //Content can be a jQuery object
+	//Event to add new tab
+	$tabs.trigger('addTab',[label,content]);
+	return false;
+});
+</pre>
+
+	<div>
+		<div style="margin:20px 0;float:left">
+			<a class="ui-state-default ui-corner-all" id="addTab_2" href="#" style="padding:6px 6px 6px 17px;text-decoration:none;position:relative">
+				<span class="ui-icon ui-icon-plus" style="position:absolute;top:4px;left:1px"></span>
+				Add new tab using <span class="myCode ui-state-active">$tabs.trigger('addTab', [label,content])</span>
+			</a>
+		</div>
+		<div style="margin:20px 0 20px 8px;float:left;">
+			<a class="ui-state-default ui-corner-all" id="addUiTab_2" href="#" style="padding:6px 6px 6px 17px;text-decoration:none;position:relative">
+				<span class="ui-icon ui-icon-plus" style="position:absolute;top:4px;left:1px"></span>
+				Add new tab using <span class="myCode ui-state-active">$tabs.tabs('add','#'+tabid,label)</span>
+			</a>
+		</div>
+		<div style="clear:both;margin:20px 0;">
+			<a class="ui-state-default ui-corner-all" id="removeTab_2" href="#" style="padding:6px 6px 6px 17px;text-decoration:none;position:relative">
+				<span class="ui-icon ui-icon-plus" style="position:absolute;top:4px;left:1px"></span>
+				Remove last tab using <span class="myCode ui-state-active">$tabs.tabs('remove',$tabs.tabs('length')-1)</span>
+			</a>
+		</div>
+		<div style="clear:both"></div>
+	</div>
+	
+	<div id="example_2" class="tabs">
+		<ul>
+			<li><a href="#tabs-1-3">Tab 1</a></li>
+			<li><a href="#tabs-2-3">This is tab 2</a></li>
+			<li><a href="#tabs-3-3">This is tab number 3</a></li>
+			<li><a href="#tabs-4-3">Tab no 4</a></li>
+			<li><a href="#tabs-5-3">And tab number 5</a></li>
+			<li><a href="#tabs-6-3">Tab number 6</a></li>
+			<li><a href="#tabs-7-3">And last tab number 7</a></li>
+		</ul>
+		<div id="tabs-1-3">Tab 1<br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque hendrerit vulputate porttitor. Fusce purus leo, faucibus a sagittis congue, molestie tempus felis. Donec convallis semper enim, varius sagittis eros imperdiet in. Vivamus semper sem at metus mattis a aliquam neque ornare. Proin sed semper lacus.</div>
+		<div id="tabs-2-3">This is tab 2<br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque hendrerit vulputate porttitor. Fusce purus leo, faucibus a sagittis congue, molestie tempus felis. Donec convallis semper enim, varius sagittis eros imperdiet in. Vivamus semper sem at metus mattis a aliquam neque ornare. Proin sed semper lacus.</div>
+		<div id="tabs-3-3">This is tab number 3<br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque hendrerit vulputate porttitor. Fusce purus leo, faucibus a sagittis congue, molestie tempus felis. Donec convallis semper enim, varius sagittis eros imperdiet in. Vivamus semper sem at metus mattis a aliquam neque ornare. Proin sed semper lacus.</div>
+		<div id="tabs-4-3">Tab no 4<br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque hendrerit vulputate porttitor. Fusce purus leo, faucibus a sagittis congue, molestie tempus felis. Donec convallis semper enim, varius sagittis eros imperdiet in. Vivamus semper sem at metus mattis a aliquam neque ornare. Proin sed semper lacus.</div>
+		<div id="tabs-5-3">And this is the tab number 5<br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque hendrerit vulputate porttitor. Fusce purus leo, faucibus a sagittis congue, molestie tempus felis. Donec convallis semper enim, varius sagittis eros imperdiet in. Vivamus semper sem at metus mattis a aliquam neque ornare. Proin sed semper lacus.</div>
+		<div id="tabs-6-3">Tab number 6<br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque hendrerit vulputate porttitor. Fusce purus leo, faucibus a sagittis congue, molestie tempus felis. Donec convallis semper enim, varius sagittis eros imperdiet in. Vivamus semper sem at metus mattis a aliquam neque ornare. Proin sed semper lacus.</div>
+		<div id="tabs-7-3">And last tab number 7<br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque hendrerit vulputate porttitor. Fusce purus leo, faucibus a sagittis congue, molestie tempus felis. Donec convallis semper enim, varius sagittis eros imperdiet in. Vivamus semper sem at metus mattis a aliquam neque ornare. Proin sed semper lacus.</div>
+	</div>
+	<br>
+	<span style="font-size:13px">Try resizing the tabs container</span>
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
